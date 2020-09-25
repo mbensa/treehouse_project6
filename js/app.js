@@ -13,5 +13,39 @@ btnReset.addEventListener("click", () => {
   overlay.style.display = "none";
 });
 
-//function that randombly chooses a phrase from the phrases array
-function getRandomPhraseAsArray(arr) {}
+//function that randombly chooses a phrase from the phrases array and returns a character array
+function getRandomPhraseAsArray(arr) {
+  let randomPhrase = Math.floor(Math.random() * arr.length);
+  let splitPhrase = arr[randomPhrase].split("");
+  return splitPhrase;
+}
+
+getRandomPhraseAsArray(phrases);
+
+//check if a character is a letter
+function isCharacterALetter(char) {
+  return char.toLowerCase() != char.toUpperCase();
+}
+
+//function that loops through an array of characters and adss them to the list item
+function addPhraseToDisplay(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (isCharacterALetter(phraseArray[i])) {
+      let li = document.createElement("li");
+      li.setAttribute("id", "phrase");
+      li.setAttribute("class", "letter");
+      li.textContent = phraseArray[i];
+      let ul = document.getElementsByTagName("ul")[0];
+      ul.appendChild(li);
+    } else {
+      let li = document.createElement("li");
+      li.setAttribute("id", "phrase");
+      li.textContent = phraseArray[i];
+      let ul = document.getElementsByTagName("ul")[0];
+      ul.appendChild(li);
+    }
+  }
+}
+
+let phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray);
