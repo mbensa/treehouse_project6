@@ -15,8 +15,8 @@ btnReset.addEventListener("click", () => {
 
 //function that randombly chooses a phrase from the phrases array and returns a character array
 function getRandomPhraseAsArray(arr) {
-  let randomPhrase = Math.floor(Math.random() * arr.length);
-  let splitPhrase = arr[randomPhrase].split("");
+  const randomPhrase = Math.floor(Math.random() * arr.length);
+  const splitPhrase = arr[randomPhrase].split("");
   return splitPhrase;
 }
 
@@ -49,3 +49,16 @@ function addPhraseToDisplay(arr) {
 
 let phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
+
+//checkLetter function
+function checkLetter(btn) {
+  const allLi = document.querySelectorAll(".letter");
+  let match = null;
+  for (let i = 0; i < allLi.length; i++) {
+    if (btn.textContent === allLi[i].textContent) {
+      allLi[i].setAttribute("class", "show");
+      match = btn.textContent;
+    }
+  }
+  return match;
+}
