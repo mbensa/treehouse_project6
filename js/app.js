@@ -3,6 +3,7 @@ const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const btnReset = document.querySelector("a");
 const overlay = document.getElementById("overlay");
+let heart = document.querySelectorAll("tries");
 let missed = 0;
 
 //phrases array
@@ -62,3 +63,14 @@ function checkLetter(btn) {
   }
   return match;
 }
+
+//add an event listener to the keyboard
+qwerty.addEventListener("click", (e) => {
+  let btn = e.target;
+  btn.setAttribute("class", "chosen");
+  btn.disabled = "disabled";
+  let letterFound = checkLetter(btn);
+  if (letterFound === null) {
+    missed += 1;
+  }
+});
