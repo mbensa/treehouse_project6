@@ -4,8 +4,8 @@ const phrase = document.getElementById("phrase");
 const btnReset = document.querySelector("a");
 const overlay = document.getElementById("overlay");
 const ol = document.querySelector("ol");
+const originalOl = document.querySelector("ol").innerHTML;
 let title = document.querySelector("h2");
-let phraseArray = getRandomPhraseAsArray(phrases);
 let missed = 0;
 
 //phrases array
@@ -62,13 +62,32 @@ function checkWin() {
     overlay.classList.add("win");
     overlay.style.display = "flex";
     title.textContent = "YOU WON!";
+    reset();
   } else if (missed > 4) {
     overlay.classList.add("lose");
     overlay.style.display = "flex";
     title.textContent = "YOU LOST!";
+    reset();
   }
+  btnReset.textContent = "Play Again";
 }
 
+function reset() {
+  document.querySelectorAll(".letter").forEach((e) => {
+    e.parentNode.removeChild(e);
+  });
+  document.querySelectorAll(".chosen").forEach((e) => {
+    e.classList.remove("chosen");
+    e.removeAttribute("disabled");
+  });
+  ol.innerHTML = originalOl;
+  phraseArray = getRandomPhraseAsArray(phrases);
+  getRandomPhraseAsArray(phrases);
+  addPhraseToDisplay(phraseArray);
+  missed = 0;
+}
+
+let phraseArray = getRandomPhraseAsArray(phrases);
 getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
