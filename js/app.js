@@ -27,7 +27,6 @@ function isCharacterALetter(char) {
 function addPhraseToDisplay(arr) {
   for (let i = 0; i < arr.length; i++) {
     let li = document.createElement("li");
-    li.setAttribute("id", "phrase");
 
     if (isCharacterALetter(phraseArray[i])) {
       li.classList.add("letter");
