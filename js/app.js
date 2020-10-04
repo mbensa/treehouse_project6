@@ -60,11 +60,13 @@ function checkWin() {
   const show = document.querySelectorAll(".show");
   if (letter.length === show.length) {
     overlay.classList.add("win");
+    overlay.classList.remove("lose");
     overlay.style.display = "flex";
     title.textContent = "YOU WON!";
     reset();
   } else if (missed > 4) {
     overlay.classList.add("lose");
+    overlay.classList.remove("win");
     overlay.style.display = "flex";
     title.textContent = "YOU LOST!";
     reset();
@@ -72,6 +74,7 @@ function checkWin() {
   btnReset.textContent = "Play Again";
 }
 
+//reset the game and play again
 function reset() {
   document.querySelectorAll(".letter").forEach((e) => {
     e.parentNode.removeChild(e);
